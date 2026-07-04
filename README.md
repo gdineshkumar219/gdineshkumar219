@@ -1,11 +1,3 @@
-<!--
-  GitHub Profile README for @gdineshkumar219
-  How to publish:
-  1. Create a new PUBLIC repo named EXACTLY  gdineshkumar219  (same as your username).
-  2. Add this file as README.md at the repo root.
-  3. Commit & push — GitHub shows it automatically on your profile page.
--->
-
 <h1 align="center">Hi 👋, I'm Dinesh Kumar</h1>
 
 <p align="center">
