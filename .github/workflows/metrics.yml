@@ -18,17 +18,40 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # A Personal Access Token (classic) with  repo  and  read:user  scopes,
-          # saved as a repository secret named  METRICS_TOKEN .
+          # A Personal Access Token (classic) with  repo ,  read:org  and  read:user
+          # scopes, saved as a repo secret named  METRICS_TOKEN .
+          #  repo    -> lets metrics read your private + organization repositories
+          #  read:org -> lets metrics see the  metamation  organization contributions
           token: ${{ secrets.METRICS_TOKEN }}
           user: gdineshkumar219
           filename: github-metrics.svg
           template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Kolkata
+
+          # Count contributions from repos you collaborate on and organization repos
+          # (e.g. metamation/Flux, metamation/Fluxtester) instead of only your own.
+          repositories_affiliations: owner, collaborator, organization_member
+
+          # Languages across every repo you contributed to (needs  repo  scope for private).
           plugin_languages: yes
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 8
+
+          # Isometric commit calendar (includes private contributions if enabled on profile).
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
+
+          # Notable contributions -> surfaces your work in organizations like  metamation .
+          plugin_notable: yes
+          plugin_notable_from: organization
+          plugin_notable_repositories: yes
+          plugin_notable_types: commit, pull_request
+
+          # Coding habits & activity (commit times, most active day, languages).
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+
           plugin_stargazers: yes
