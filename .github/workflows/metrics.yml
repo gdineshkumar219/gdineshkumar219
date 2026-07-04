@@ -1,0 +1,34 @@
+name: Metrics
+
+on:
+  schedule: # Runs daily at 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch: # Allows manual runs from the Actions tab
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    name: generate-metrics
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # A Personal Access Token (classic) with  repo  and  read:user  scopes,
+          # saved as a repository secret named  METRICS_TOKEN .
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: gdineshkumar219
+          filename: github-metrics.svg
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: Asia/Kolkata
+          plugin_languages: yes
+          plugin_languages_details: bytes-size, percentage
+          plugin_languages_limit: 8
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          plugin_stargazers: yes
