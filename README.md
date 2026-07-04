@@ -51,7 +51,10 @@
 
 <p align="center">
   <a href="https://github.com/metamation/Flux">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=metamation&repo=Flux&theme=tokyonight&show_owner=true" alt="Flux repo" />
+    <img src="https://img.shields.io/badge/metamation-Flux-0e75b6?style=for-the-badge&logo=github&logoColor=white" alt="Flux" />
+  </a>
+  <a href="https://github.com/metamation/Fluxtester">
+    <img src="https://img.shields.io/badge/metamation-Fluxtester-1f6feb?style=for-the-badge&logo=github&logoColor=white" alt="Fluxtester" />
   </a>
 </p>
 
