@@ -34,7 +34,7 @@
 
 <p align="center">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=gdineshkumar219&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" alt="stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gdineshkumar219&layout=compact&theme=tokyonight" alt="top langs" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gdineshkumar219&layout=compact&theme=tokyonight&hide=javascript,html,css&langs_count=8&exclude_repo=Training" alt="top langs" />
 </p>
 
 <p align="center">
