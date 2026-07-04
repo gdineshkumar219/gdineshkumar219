@@ -58,8 +58,8 @@
 ### 🚀 Featured Projects
 
 <p align="center">
-  <a href="https://github.com/gdineshkumar219/flux">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=gdineshkumar219&repo=flux&theme=tokyonight&show_owner=true" alt="flux repo" />
+  <a href="https://github.com/metamation/Flux">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=metamation&repo=Flux&theme=tokyonight&show_owner=true" alt="Flux repo" />
   </a>
 </p>
 
