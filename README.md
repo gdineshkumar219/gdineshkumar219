@@ -1,40 +1,45 @@
-<h1 align="center">Hi 👋, I'm Dinesh Kumar</h1>
-
+<!-- ======================= BANNER ======================= -->
 <p align="center">
-  <a href="https://github.com/DenverCoder1/readme-typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&center=true&vCenter=true&width=520&lines=Junior+Developer;Building+today.+Learning+always." alt="Typing SVG" />
-  </a>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f6feb,100:0e75b6&height=200&section=header&text=Hi,%20I'm%20Dinesh%20Kumar&fontSize=42&fontColor=ffffff&fontAlignY=36&desc=A%20.NET%20Developer%20in%20the%20making&descSize=18&descAlignY=58" alt="banner" />
+</p>
+
+<!-- ======================= BADGES ======================= -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=gdineshkumar219&label=Visits&color=0e75b6&style=flat-square" alt="visits" />
+  <img src="https://img.shields.io/github/followers/gdineshkumar219?label=Followers&style=flat-square&color=0e75b6" alt="followers" />
+  <img src="https://img.shields.io/github/stars/gdineshkumar219?label=Stars&style=flat-square&color=0e75b6" alt="stars" />
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=gdineshkumar219&label=Profile%20views&color=0e75b6&style=flat" alt="profile views" />
+  I'm a <b>.NET developer</b> focused on <b>C# / WPF</b> desktop development 🖥️.
+  I love building clean, reliable software and I'm always up for learning
+  something new 🚀. Currently working on <b>Flux</b> and <b>Fluxtester</b> at
+  <a href="https://github.com/metamation">metamation</a>.
 </p>
 
 ---
 
-### 🧑‍💻 About Me
+<!-- ==================== TECHNOLOGY STACK ==================== -->
+<h2 align="center">🛠️ Technology Stack</h2>
 
-- 🌱 A **Junior Developer** — *building today, learning always.*
-- 💻 Focused on **C# / .NET** desktop development with **WPF**.
-- 🤝 Open to collaborating and always up for learning something new.
-
----
-
-### 🛠️ Tech Stack
-
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=cs,dotnet,visualstudio,git,github" alt="skills" />
-  <br/>
+<p align="center">
+  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
+  <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET" />
   <img src="https://img.shields.io/badge/WPF-0C54C2?style=for-the-badge&logo=windows&logoColor=white" alt="WPF" />
+  <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio" />
+  <img src="https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
 </p>
 
 ---
 
-### 📊 GitHub Stats
+<!-- ==================== MY GITHUB STATS ==================== -->
+<h2 align="center">📊 My GitHub Stats</h2>
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=gdineshkumar219&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" alt="stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gdineshkumar219&layout=compact&theme=tokyonight&hide=javascript,html,css&langs_count=8&exclude_repo=Training" alt="top langs" />
+  <img height="180" src="https://github-readme-stats.vercel.app/api?username=gdineshkumar219&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" alt="stats" />
+  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gdineshkumar219&layout=compact&theme=tokyonight&hide=javascript,html,css&langs_count=8&exclude_repo=Training" alt="Most Used Languages" />
 </p>
 
 <p align="center">
