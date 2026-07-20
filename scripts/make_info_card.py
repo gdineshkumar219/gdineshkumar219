@@ -12,7 +12,7 @@ import html
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "..", "info-card.svg")
+OUT = os.path.join(HERE, "..", "assets", "info-card.svg")
 # Static (frozen, always-visible) by default so the card never renders blank in
 # viewers that snapshot the SVG before SMIL animations run (e.g. GitHub's image
 # proxy). Set ANIMATE=1 to emit the staggered fade-in instead.

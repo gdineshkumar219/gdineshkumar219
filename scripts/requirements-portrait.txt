@@ -1,7 +1,7 @@
 # One-time portrait pipeline deps (prep_photo.py + make_ascii_svg.py).
 # Not needed by the daily CI workflow -- run locally when the source photo changes:
 #   pip install -r scripts/requirements-portrait.txt
-#   python scripts/prep_photo.py source-photo.png
+#   python scripts/prep_photo.py assets/source/dkIcon.png
 #   python scripts/make_ascii_svg.py
 Pillow>=10.0.0
 numpy>=1.26.0
