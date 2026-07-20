@@ -13,7 +13,10 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "info-card.svg")
-STATIC = bool(os.environ.get("STATIC"))
+# Static (frozen, always-visible) by default so the card never renders blank in
+# viewers that snapshot the SVG before SMIL animations run (e.g. GitHub's image
+# proxy). Set ANIMATE=1 to emit the staggered fade-in instead.
+STATIC = os.environ.get("ANIMATE") is None
 
 W, H = 480, 320
 PAD = 20
