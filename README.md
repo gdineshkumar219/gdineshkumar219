@@ -45,6 +45,7 @@
   <br />
   <img src="https://img.shields.io/badge/WPF-0C54C2?style=for-the-badge" alt="WPF" />
   <img src="https://img.shields.io/badge/MVVM-238636?style=for-the-badge" alt="MVVM architecture" />
+  <img src="https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge" alt="SQL Server" />
 </p>
 
 ---
