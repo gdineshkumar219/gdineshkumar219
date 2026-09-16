@@ -1,7 +1,7 @@
 """
 Convert a portrait photo into a CLEAN, monochrome ASCII-art SVG (one light-gray
 color, subject isolated on a dark background) that "types" itself in like a
-terminal, then holds.
+terminal, then crossfades into the full-color icon and holds.
 
 Monochrome is deliberate -- per-character rainbow color is what makes ASCII
 portraits look noisy. One fill color + a good density ramp + high contrast (so a
@@ -10,11 +10,13 @@ busy background washes out to blank) reads as neat and legible.
 GitHub renders SVGs embedded via <img> and runs their SMIL animations there (JS
 does not run). Each row is revealed with a left-to-right clip wipe plus a small
 block cursor riding the wipe edge, staggered top -> bottom, so the whole
-portrait prints once and freezes.
+portrait prints once before transitioning to the embedded icon. STATIC=1 emits
+the completed icon without animation.
 
-    python scripts/make_ascii_svg.py [source-prepped.png] [out.svg]
+    python scripts/make_ascii_svg.py [source-prepped.png] [out.svg] [icon.png]
 """
 from PIL import Image, ImageEnhance, ImageFilter
+import base64
 import html
 import os
 import sys
@@ -24,6 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # the background removed + local contrast applied.
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "assets", "source", "source-prepped.png")
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "..", "assets", "dinesh-ascii.svg")
+ICON = sys.argv[3] if len(sys.argv) > 3 else os.path.join(HERE, "..", "assets", "source", "dkIcon.png")
 
 NAME = os.environ.get("PORTRAIT_NAME", "Dinesh Kumar")
 USER = os.environ.get("GH_PROFILE_USER", "dinesh")
@@ -60,6 +63,8 @@ CURSOR = "#c9d1d9"
 # ---- reveal timing (one-shot; a cursor rasters top -> bottom) -------------
 ROW_DUR = 0.11
 STAGGER = 0.11       # == ROW_DUR -> a single cursor sweeping down
+FADE_BEGIN = (ROWS - 1) * STAGGER + ROW_DUR + 0.6
+FADE_DUR = 1.2
 
 # ---- 1. sample the image into a COLS x ROWS grayscale grid ----------------
 im = Image.open(SRC).convert("L")  # grayscale
@@ -71,6 +76,9 @@ im = im.resize((COLS, ROWS), Image.LANCZOS)
 px = im.load()
 
 STATIC = bool(os.environ.get("STATIC"))  # emit frozen state for previews
+
+with open(ICON, "rb") as icon_file:
+    icon_data = base64.b64encode(icon_file.read()).decode("ascii")
 
 rows_txt = []
 for y in range(ROWS):
@@ -101,6 +109,12 @@ parts.append(
     f'<stop offset="0" stop-color="{BG2}"/><stop offset="1" stop-color="{BG}"/>'
     f'</linearGradient></defs>'
 )
+parts.append(
+    '<style>@media (prefers-reduced-motion: reduce) {'
+    '#ascii-portrait, #status-cursor { display: none; }'
+    '#portrait-icon { opacity: 1 !important; }'
+    '}</style>'
+)
 parts.append(f'<rect width="{CANVAS_W}" height="{CANVAS_H}" rx="12" fill="url(#bg)"/>')
 parts.append(
     f'<rect x="0.5" y="0.5" width="{CANVAS_W-1}" height="{CANVAS_H-1}" rx="12" '
@@ -115,6 +129,14 @@ parts.append(
     f'<text x="{CANVAS_W/2}" y="{TITLEBAR_H/2 + 4}" fill="{TITLE_TEXT}" font-size="12" '
     f'text-anchor="middle">{USER}@github: ~$ ./portrait.sh</text>'
 )
+
+parts.append(f'<g id="ascii-portrait" opacity="{0 if STATIC else 1}">')
+if not STATIC:
+    parts.append(
+        f'<animate attributeName="opacity" from="1" to="0" begin="{FADE_BEGIN:.3f}s" '
+        f'dur="{FADE_DUR:.2f}s" fill="freeze" calcMode="spline" '
+        'keyTimes="0;1" keySplines="0.4 0 0.2 1"/>'
+    )
 
 # one <text> per row (single color -> no per-char markup, tiny file)
 font_size = CELL_H * 0.86
@@ -146,6 +168,20 @@ for ry, line in enumerate(rows_txt):
         f'<set attributeName="opacity" to="0" begin="{delay+ROW_DUR:.3f}s"/></rect>'
     )
 
+parts.append('</g>')
+parts.append(
+    f'<image id="portrait-icon" x="{PAD}" y="{art_top:.1f}" width="{ART_W}" height="{ART_H}" '
+    f'preserveAspectRatio="xMidYMid meet" opacity="{1 if STATIC else 0}" '
+    f'href="data:image/png;base64,{icon_data}">'
+)
+if not STATIC:
+    parts.append(
+        f'<animate attributeName="opacity" from="0" to="1" begin="{FADE_BEGIN:.3f}s" '
+        f'dur="{FADE_DUR:.2f}s" fill="freeze" calcMode="spline" '
+        'keyTimes="0;1" keySplines="0.4 0 0.2 1"/>'
+    )
+parts.append('</image>')
+
 # status bar with a steady blinking cursor
 status_line_y = TITLEBAR_H + ART_H + PAD * 0.35
 status_y = status_line_y + 19
@@ -158,10 +194,15 @@ parts.append(
     f'{label}<tspan fill="{INK}">{html.escape(NAME)}</tspan></text>'
 )
 parts.append(
-    f'<rect x="{PAD + len(label)*7 + len(NAME)*7 + 6}" y="{status_y-12:.1f}" width="8" height="14" fill="{INK}">'
-    f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" '
-    f'dur="1s" repeatCount="indefinite"/></rect>'
+    f'<rect id="status-cursor" x="{PAD + len(label)*7 + len(NAME)*7 + 6}" y="{status_y-12:.1f}" '
+    f'width="8" height="14" fill="{INK}">'
 )
+if not STATIC:
+    parts.append(
+        '<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" '
+        'dur="1s" repeatCount="indefinite"/>'
+    )
+parts.append('</rect>')
 
 parts.append("</svg>")
 svg = "".join(parts)

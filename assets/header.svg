@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="44" viewBox="0 0 360 44" role="img" aria-labelledby="title description">
+  <title id="title">C# / .NET Developer</title>
+  <desc id="description">A developer tagline that erases and retypes beside a blinking terminal cursor.</desc>
+  <style>
+    text {
+      fill: #0969da;
+      font-family: "Cascadia Code", Consolas, "Liberation Mono", monospace;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .typing {
+      animation: typing 8s steps(19, end) infinite;
+    }
+
+    .cursor {
+      stroke: #1a7f37;
+      stroke-width: 2;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes typing {
+      0%, 45%, 95%, 100% { transform: translateX(0); }
+      60%, 70% { transform: translateX(-228px); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      text { fill: #58a6ff; }
+      .cursor { stroke: #3fb950; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .typing, .cursor { animation: none; }
+      .cursor { opacity: 0; }
+    }
+  </style>
+  <defs>
+    <clipPath id="typing-clip" clipPathUnits="userSpaceOnUse">
+      <rect class="typing" width="228" height="44" />
+    </clipPath>
+  </defs>
+  <g transform="translate(63 0)">
+    <text x="0" y="29" textLength="228" lengthAdjust="spacingAndGlyphs" clip-path="url(#typing-clip)">C# / .NET Developer</text>
+    <g class="typing">
+      <path class="cursor" d="M232 10V32" />
+    </g>
+  </g>
+</svg>
